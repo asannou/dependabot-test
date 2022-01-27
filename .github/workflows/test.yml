@@ -6,6 +6,7 @@ on:
   pull_request_target:
     types:
       - labeled
+  workflow_dispatch:
 
 jobs:
   test:
@@ -15,6 +16,8 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'safe to test')
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - run: sh test.sh
         env:
           SECRET: ${{ secrets.TEST }}
