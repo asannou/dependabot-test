@@ -12,6 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     if: |
+      github.event_name == 'workflow_dispatch' ||
       github.event_name == 'schedule' ||
       contains(github.event.pull_request.labels.*.name, 'safe to test')
     steps:
