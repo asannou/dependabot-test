@@ -1,1 +1,1 @@
-echo $SECRET
+echo 1
